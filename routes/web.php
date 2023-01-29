@@ -37,12 +37,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
     Route::get('/getTinggi', 'TimbanganController@getTinggi')->name('getTinggi');
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
-        Route::get('/create', 'BayiController@create')->name('create');
-        Route::post('/bayi', 'BayiController@store')->name('store');
-        Route::get('/pengukuran', 'BayiController@createPengukuran')->name('pengukuran');
-        Route::get('/get-nama-ibu/{nama_bayi}', 'BayiController@getNamaIbu');
-        Route::post('/store', 'BayiController@storePengukuran')->name('pengukuran.store');
-        Route::get('/riwayat', 'BayiController@showHistory')->name('showHistory');
+        Route::get('/create', 'BalitaController@create')->name('create');
+        Route::post('/balita', 'BalitaController@store')->name('store');
+        Route::get('/pengukuran', 'BalitaController@createPengukuran')->name('pengukuran');
+        Route::get('/get-nama-ibu/{nama_balita}', 'BalitaController@getNamaIbu');
+        Route::post('/store', 'BalitaController@storePengukuran')->name('pengukuran.store');
+        Route::get('/riwayat', 'BalitaController@showHistory')->name('showHistory');
 
     });
     });

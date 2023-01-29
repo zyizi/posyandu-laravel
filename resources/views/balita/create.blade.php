@@ -2,11 +2,11 @@
 
 @section('content')
 @auth
-<form action="/bayi" method="post">
+<form action="/balita" method="post">
     @csrf
     <div class="form-group">
-        <label for="nama_bayi">Nama Bayi:</label>
-        <input type="text" class="form-control" id="nama_bayi" name="nama_bayi">
+        <label for="nama_balita">Nama Balita:</label>
+        <input type="text" class="form-control" id="nama_balita" name="nama_balita">
     </div>
     <div class="form-group">
         <label for="nama_ibu">Nama Ibu:</label>

@@ -4,10 +4,10 @@
 @auth
 <form>
     <div class="form-group">
-        <label for="nama_bayi">Nama Bayi:</label>
-        <select class="form-control" id="nama_bayi" name="nama_bayi" onchange="updateNamaIbu()">
-    @foreach($nama_bayi as $bayi)
-                <option value="{{ $bayi->nama_bayi }}">{{ $bayi->nama_bayi }}</option>
+        <label for="nama_balita">Nama Balita:</label>
+        <select class="form-control" id="nama_balita" name="nama_balita" onchange="updateNamaIbu()">
+    @foreach($nama_balita as $balita)
+                <option value="{{ $balita->nama_balita }}">{{ $balita->nama_balita }}</option>
 @endforeach
         </select>
     </div>
@@ -31,8 +31,8 @@
 
 <script>
     function updateNamaIbu() {
-        var nama_bayi = $('#nama_bayi').val();
-        $.get('/get-nama-ibu/' + nama_bayi, function(data) {
+        var nama_balita = $('#nama_balita').val();
+        $.get('/get-nama-ibu/' + nama_balita, function(data) {
             $('#nama_ibu').html(data);
         });
     }

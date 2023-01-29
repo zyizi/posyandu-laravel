@@ -31,18 +31,8 @@
     <!-- Custom styles for this template -->
     <link href="{!! url('assets/css/app.css') !!}" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function updateNamaIbu() {
-            var nama_bayi = $('#nama_bayi').val();
-            $.get('/get-nama-ibu/' + nama_bayi, function(data) {
-                $('#nama_ibu').val(data);
-            });
-        }
-        $('#nama_bayi').change(updateNamaIbu);
-    </script>
-</head>
+    </head>
 <body>
-
 @include('layouts.partials.navbar')
 
 <main class="container">

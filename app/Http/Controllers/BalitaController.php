@@ -3,44 +3,44 @@
 namespace App\Http\Controllers;
 
 
-use App\Bayi;
+use App\Balita;
 use App\Pengukuran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class BayiController extends Controller
+class BalitaController extends Controller
 {
     public function create()
     {
-        return view('bayi.create');
+        return view('balita.create');
     }
     public function store(Request $request)
     {
         $request->validate([
-            'nama_bayi' => 'required|string|max:255',
+            'nama_balita' => 'required|string|max:255',
             'nama_ibu' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|string|in:L,P',
         ]);
 
-        $bayi = new Bayi();
-        $bayi->nama_bayi = $request->nama_bayi;
-        $bayi->nama_ibu = $request->nama_ibu;
-        $bayi->tanggal_lahir = $request->tanggal_lahir;
-        $bayi->jenis_kelamin = $request->jenis_kelamin;
-        $bayi->save();
+        $balita = new Balita();
+        $balita->nama_balita = $request->nama_balita;
+        $balita->nama_ibu = $request->nama_ibu;
+        $balita->tanggal_lahir = $request->tanggal_lahir;
+        $balita->jenis_kelamin = $request->jenis_kelamin;
+        $balita->save();
         return redirect()->route('home.index');
     }
     public function createPengukuran()
     {
-        $bayis = Bayi::all();
-        return view('pengukuran.create', compact('bayis'));
+        $balitas = Balita::all();
+        return view('pengukuran.create', compact('balitas'));
 
     }
-    public function getNamaIbu($nama_bayi)
+    public function getNamaIbu($nama_balita)
     {
-        $nama_ibu = Bayi::where('nama_bayi', $nama_bayi)->select('nama_ibu')->distinct()->get();
+        $nama_ibu = Balita::where('nama_balita', $nama_balita)->select('nama_ibu')->distinct()->get();
         $options = '';
         foreach($nama_ibu as $ibu) {
             $options .= '<option value="' . $ibu->nama_ibu . '">' . $ibu->nama_ibu . '</option>';
@@ -51,13 +51,13 @@ class BayiController extends Controller
     public function storePengukuran(Request $request)
     {
         $this->validate($request, [
-            'nama_bayi' => 'required',
+            'nama_balita' => 'required',
             'berat' => 'required|numeric',
             'tinggi' => 'required|numeric',
         ]);
 
         $pengukuran = new Pengukuran;
-        $pengukuran->nama_bayi = $request->nama_bayi;
+        $pengukuran->nama_balita = $request->nama_balita;
         $pengukuran->nama_ibu = $request->nama_ibu;
         $pengukuran->berat = $request->berat;
         $pengukuran->tinggi = $request->tinggi;
@@ -67,12 +67,12 @@ class BayiController extends Controller
     }
     public function showHistory(Request $request)
     {
-        $nama_bayi = $request->input('nama_bayi');
-        $bayis = Bayi::with('pengukuran')->where('nama_bayi', $nama_bayi)->first();
-        $bayis = Bayi::with(['pengukuran' => function ($query) use ($nama_bayi) {
-            $query->where('nama_bayi', $nama_bayi);
+        $nama_balita = $request->input('nama_balita');
+        $balitas = Balita::with('pengukuran')->where('nama_balita', $nama_balita)->first();
+        $balitas = Balita::with(['pengukuran' => function ($query) use ($nama_balita) {
+            $query->where('nama_balita', $nama_balita);
         }])->get();
-        return view('bayi.riwayat', ['data' => $bayis, 'bayis' => $bayis]);
+        return view('balita.riwayat', ['data' => $balitas, 'balitas' => $balitas]);
     }
 
 

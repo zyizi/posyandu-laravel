@@ -9,11 +9,11 @@ class Pengukuran extends Model
     protected $table = 'pengukuran';
     public $timestamps = false;
     protected $fillable = [
-        'nama_bayi', 'nama_ibu', 'tanggal_pengukuran', 'berat', 'tinggi'
+        'nama_balita', 'nama_ibu', 'tanggal_pengukuran', 'berat', 'tinggi'
     ];
-    public function bayi()
+    public function balita()
     {
-        return $this->belongsTo('App\Bayi', 'nama_bayi', 'nama_bayi');
+        return $this->belongsTo('App\Balita', 'nama_balita', 'nama_balita');
     }
 }
 

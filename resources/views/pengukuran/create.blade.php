@@ -5,10 +5,10 @@
 <form action="{{route('pengukuran.store')}}" method="post">
     @csrf
     <div class="form-group">
-        <label for="nama_bayi">Nama Bayi:</label>
-        <select class="form-control" id="nama_bayi" name="nama_bayi" onchange="updateNamaIbu()">
-        @foreach($bayis as $d)
-            <option value="{{$d->nama_bayi}}">{{$d->nama_bayi}}</option>
+        <label for="nama_balita">Nama Balita:</label>
+        <select class="form-control" id="nama_balita" name="nama_balita" onchange="updateNamaIbu()">
+        @foreach($balitas as $d)
+            <option value="{{$d->nama_balita}}">{{$d->nama_balita}}</option>
             @endforeach
         </select>
     </div>
@@ -33,12 +33,12 @@
 </form>
 <script>
     function updateNamaIbu() {
-        var nama_bayi = $('#nama_bayi').val();
-        $.get('/get-nama-ibu/' + nama_bayi, function(data) {
+        var nama_balita = $('#nama_balita').val();
+        $.get('/get-nama-ibu/' + nama_balita, function(data) {
             $('#nama_ibu').html(data.options);
         });
     }
-    $('#nama_bayi').change(updateNamaIbu);
+    $('#nama_balita').change(updateNamaIbu);
     $(document).ready(function(){
         setInterval(function(){
             $.ajax({
